@@ -22,6 +22,15 @@ export default class SchemaBlockModel extends OsfModel implements SchemaBlock {
     @attr('number') index?: number;
     @attr('string') pattern?: string;
     @attr('boolean') spaceNormalization?: boolean;
+    @attr('string') retrievalTitle?: string;
+    @attr('string') retrievalDate?: string;
+    @attr('boolean') concealmentPageNavigator?: boolean;
+    @attr('string') requiredAllCheck?: string;
+    @attr('boolean') multiLanguage?: boolean;
+    @attr('string') retrievalVersion?: string;
+    @attr('boolean') readonly?: boolean;
+    @attr('boolean') sentence?: boolean;
+    @attr('string') rowAdditionCaption?: string;
 
     @belongsTo('registration-schema', { inverse: 'schemaBlocks', async: false })
     schema?: RegistrationSchemaModel;

@@ -10,6 +10,7 @@ import {
     SchemaBlock,
     SchemaBlockGroup,
     setupEventForSyncValidation,
+    setupEventForSyncValidation2,
 } from 'ember-osf-web/packages/registration-schema';
 import { RegistrationResponse } from 'ember-osf-web/packages/registration-schema/registration-response';
 
@@ -17,12 +18,14 @@ export class PageManager {
     changeset?: ChangesetDef;
     schemaBlockGroups?: SchemaBlockGroup[];
     pageHeadingText?: string;
+    concealmentPageNavigator?: boolean;
     isVisited?: boolean;
 
     constructor(pageSchemaBlocks: SchemaBlock[], registrationResponses: RegistrationResponse, node?: NodeModel) {
         this.schemaBlockGroups = getSchemaBlockGroups(pageSchemaBlocks);
         if (this.schemaBlockGroups) {
             this.pageHeadingText = this.schemaBlockGroups[0].labelBlock!.displayText!;
+            this.concealmentPageNavigator = this.schemaBlockGroups[0].labelBlock!.concealmentPageNavigator!;
 
             this.isVisited = this.schemaBlockGroups.some(
                 ({ registrationResponseKey: key }) => Boolean(key && (key in registrationResponses)),
@@ -34,7 +37,10 @@ export class PageManager {
                 lookupValidator(validations),
                 validations,
             ) as ChangesetDef;
+
             setupEventForSyncValidation(this.changeset, this.schemaBlockGroups);
+
+            setupEventForSyncValidation2(this.changeset, this.schemaBlockGroups);
 
             if (this.isVisited) {
                 this.changeset.validate();

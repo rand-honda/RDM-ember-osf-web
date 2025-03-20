@@ -49,6 +49,25 @@ export default class LabelContent extends Component {
         return this.getLocalizedText(text);
     }
 
+    @computed('localizedHelpText')
+    get localizedHelpTextLines() {
+        const text = this.localizedHelpText;
+        if (!text) {
+            return [];
+        }
+
+        return text.split('\n').map(line => {
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+
+            const parts = line.split(urlRegex).map(part => ({
+                content: part,
+                isLink: part.startsWith('https://'),
+            }));
+
+            return parts;
+        });
+    }
+
     getLocalizedText(text: string) {
         if (!text.includes('|')) {
             return text;

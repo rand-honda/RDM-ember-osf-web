@@ -38,4 +38,23 @@
             </ExpandButton>
         {{/let}}
     {{/if}}
+
+    {{!-- model1 :{{@model}}
+    model2 : {{model}}
+    {{#each @model as |item index|}}
+        {{#if (eq index 1)}}
+            <p>test >>{{item}}</p>
+        {{/if}}
+    {{/each}}   
+    test --}}
+    <OsfButton
+        data-test-copy-to-clipboard
+        data-analytics-name='Copy to clipboard'
+        @onClick={{action this.copyToClipboard}}
+        @disabled={{this.disableButtons}}
+        @type='info'
+    >
+        {{t 'registries.drafts.draft.form.copy_to_clipboard'}}
+    </OsfButton>
+
 </nav>

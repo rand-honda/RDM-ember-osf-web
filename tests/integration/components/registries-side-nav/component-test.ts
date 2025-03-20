@@ -21,6 +21,9 @@ class RouterStub extends Service {
 }
 
 class CurrentUserStub extends Service {
+    ajaxHeaders() {
+        return {};
+    }
 }
 
 /* tslint:disable:only-arrow-functions */

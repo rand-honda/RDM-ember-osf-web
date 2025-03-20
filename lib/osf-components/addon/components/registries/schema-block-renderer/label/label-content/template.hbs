@@ -8,9 +8,26 @@
     {{~/if~}}
 </p>
 {{#if @isEditableForm}}
-    <p local-class='HelpText'>
-        {{~this.localizedHelpText~}}
-    </p>
+    <div local-class='HelpText'>
+        {{#each this.localizedHelpTextLines as |lineParts|}}
+            <p local-class='HelpTextLine'>
+                {{#each lineParts as |part|}}
+                    {{#if part.isLink}}
+                        <a
+                            href={{part.content}}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                        >
+                            {{part.content}}
+                        </a>
+                    {{else}}
+                        {{part.content}}
+                    {{/if}}
+                {{/each}}
+            </p>
+        {{/each}}
+    </div>
+
     {{#if @schemaBlock.exampleText}}
         <OsfButton
             local-class='ExampleButton'

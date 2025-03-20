@@ -1,11 +1,31 @@
-<h2
-    local-class='PageHeading'
-    data-test-page-heading
-    id={{@schemaBlock.elementId}}
-    ...attributes
->
-    {{this.localizedDisplayText}}
-</h2>
+{{#if (or (not @schemaBlock.concealmentPageNavigator) (eq @schemaBlock.concealmentPageNavigator undefined)) }}
+    <h2
+        local-class='PageHeading'
+        data-test-page-heading
+        id={{@schemaBlock.elementId}}
+        ...attributes
+    >
+        {{this.localizedDisplayText}}
+    </h2>
+{{/if}}
 {{#if this.isEditableForm}}
-    <p local-class='PageHeading_helper'>{{this.localizedHelpText}}</p>
+    <div local-class='PageHeading_helper'>
+        {{#each this.localizedHelpText as |line|}}
+            <p local-class='PageHeading_helper'>
+                {{#each line as |part|}}
+                    {{#if (eq part.type 'link')}}
+                        <a
+                            href={{part.content}}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                        >
+                            {{part.content}}
+                        </a>
+                    {{else}}
+                        {{part.content}}
+                    {{/if}}
+                {{/each}}
+            </p>
+        {{/each}}
+    </div>
 {{/if}}

@@ -1025,6 +1025,15 @@ registries:
                 last_saved: 'Auto-saved: '
                 save_failed: 'Save failed. Unsaved changes present.'
                 failed_auto_save: 'Failed to auto-save draft registration form'
+                get_retrieval_label: 'Fill'
+                copy_to_clipboard: 'Copy To Clipboard'
+                from_clipboard_paste: 'From Clipboard Paste'
+                clipboard_copied: 'Clipboard copied!'
+                warning_noautosave: 'Not autosaved. Please try again later!'
+                clipboard_pasted: 'Clipboard pasted!'
+                clipboard_fail: 'Failed to save from clipboard: '
+                json_invalid: 'Clipboard does not contain valid JSON: '
+                clipboard_unread: 'Failed to read from clipboard: '
             review:
                 title: 'Review registration before submitting'
                 page_label: Review

@@ -1,10 +1,11 @@
 .LabelWrapper {
     justify-content: space-between;
-    display: inline-flex;
+    display: flex;
     width: 100%;
     padding-left: 10px;
     font-weight: 700;
-    white-space: inherit;
+    white-space: normal;
+    word-wrap: break-word;
     overflow: hidden;
 
     &:hover {
@@ -16,6 +17,8 @@
     float: left;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: normal;
+    word-wrap: break-word;
 
     &:hover {
         overflow: visible;
@@ -24,4 +27,7 @@
 
 .Count {
     float: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

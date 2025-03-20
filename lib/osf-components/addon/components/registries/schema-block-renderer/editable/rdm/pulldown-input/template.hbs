@@ -1,0 +1,26 @@
+<Registries::SchemaBlockRenderer::Editable::Base @helpText={{this.schemaBlock.helpText}}>
+    <FormControls
+      @changeset={{@changeset}}
+      @disabled={{@disabled}}
+      @shouldShowMessages={{@shouldShowMessages}}
+      ...attributes
+    >
+        <PowerSelect
+          data-test-e-rad-award-number-input
+          @options={{this.optionBlockValues}}
+          @onchange={{action this.onChange}}
+          @oninput={{action this.onInputSearch}}
+          @searchEnabled={{true}}
+          @selected={{or (get @changeset this.valuePath) null}}
+          @uniqueID={{@uniqueID}}
+          as |option|
+        >
+            {{option}}
+        </PowerSelect>
+        <ValidationErrors
+          local-class='ValidationErrors'
+          @changeset={{@changeset}}
+          @key={{@schemaBlock.registrationResponseKey}}
+        />
+    </FormControls>
+</Registries::SchemaBlockRenderer::Editable::Base>

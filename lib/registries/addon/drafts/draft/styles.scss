@@ -130,3 +130,15 @@
         display: flex;
     }
 }
+
+.BreadCrumb-container {
+    display: flex;
+}
+
+.BreadCrumb-container span {
+    margin-right: 5px;
+}
+
+.MetadataTitleName {
+    color: $white;
+}

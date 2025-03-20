@@ -29,6 +29,14 @@
         'registries/schema-block-renderer/editable/text'
         changeset=@changeset
         onInput=@onInput
+        node=@node
+        draftManager=@draftManager
+    )
+    date-input=(
+        component
+        'registries/schema-block-renderer/editable/date'
+        changeset=@changeset
+        onInput=@onInput
     )
     long-text-input=(
         component
@@ -114,6 +122,24 @@
         node=@node
         metadataNodeErad=@metadataNodeErad
     )
+    single-select-pulldown-input=(
+        component
+        'registries/schema-block-renderer/editable/rdm/single-select-pulldown-input'
+        changeset=@changeset
+        onInput=@onInput
+        onMetadataInput=@onMetadataInput
+        node=@node
+        metadataNodeErad=@metadataNodeErad
+    )    
+    pulldown-input=(
+        component
+        'registries/schema-block-renderer/editable/rdm/pulldown-input'
+        changeset=@changeset
+        onInput=@onInput
+        onMetadataInput=@onMetadataInput
+        node=@node
+        metadataNodeErad=@metadataNodeErad
+    )
     e-rad-award-number-input=(
         component
         'registries/schema-block-renderer/editable/rdm/e-rad-award-number-input'
@@ -158,6 +184,15 @@
     file-metadata-input=(
         component
         'registries/schema-block-renderer/editable/rdm/file-metadata-input'
+        changeset=@changeset
+        onInput=@onInput
+        node=@node
+        metadataNodeProject=@metadataNodeProject
+        draftManager=@draftManager
+    )
+    ad-metadata-input=(
+        component
+        'registries/schema-block-renderer/editable/rdm/ad-metadata-input'
         changeset=@changeset
         onInput=@onInput
         node=@node

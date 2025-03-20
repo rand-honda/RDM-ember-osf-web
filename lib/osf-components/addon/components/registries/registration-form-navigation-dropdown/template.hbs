@@ -60,16 +60,18 @@
                     {{/each}}
                 {{/if}}
                 {{#each this.localizedBlocksWithAnchor as |block|}}
-                    <li local-class='{{block.model.blockType}}' data-test-list-item='{{block.model.blockType}}'>
-                        <OsfLink
-                            data-test-page-anchor={{block.model.elementId}}
-                            data-analytics-name='Go to {{block.model.blockType}}: {{block.localizedDisplayText}}'
-                            @href='#{{block.model.elementId}}'
-                            @onClick={{action dd.close}}
-                        >
-                            {{block.localizedDisplayText}}
-                        </OsfLink>
-                    </li>
+                    {{#unless block.model.concealmentPageNavigator}}
+                        <li local-class='{{block.model.blockType}}' data-test-list-item='{{block.model.blockType}}'>
+                            <OsfLink
+                                data-test-page-anchor={{block.model.elementId}}
+                                data-analytics-name='Go to {{block.model.blockType}}: {{block.localizedDisplayText}}'
+                                @href='#{{block.model.elementId}}'
+                                @onClick={{action dd.close}}
+                            >
+                                {{block.localizedDisplayText}}
+                            </OsfLink>
+                        </li>
+                    {{/unless}}
                 {{/each}}
             </ol>
         </nav>

@@ -428,6 +428,7 @@ export default {
             {
                 type: 'object',
                 id: 'page7',
+                clipboardCopyPaste: false,
                 questions: [
                     {
                         help: '',

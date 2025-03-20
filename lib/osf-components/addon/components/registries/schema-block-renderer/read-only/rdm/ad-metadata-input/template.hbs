@@ -1,0 +1,24 @@
+<Registries::SchemaBlockRenderer::Editable::Base @helpText={{this.schemaBlock.helpText}}>
+    {{#if this.fileEntries }}
+        <table class='table table-responsive' local-class='file-metadata-input-files'>
+            <thead>
+                <tr>
+                    <th class='col-md-12'>
+                        {{t 'metadata.file-metadata-input.columns.path'}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each this.fileEntries as |fileEntry|}}
+                    <tr>
+                        <td class='col-md-12'>
+                            {{fileEntry.path}}
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+        <LoadingIndicator @dark={{true}} />
+    {{/if}}
+</Registries::SchemaBlockRenderer::Editable::Base>

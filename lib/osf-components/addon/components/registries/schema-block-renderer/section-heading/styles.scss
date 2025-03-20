@@ -3,3 +3,19 @@
 
     color: $color-text-gray-blue;
 }
+
+.HelpText {
+    composes: Element from '../styles';
+
+    // white-space: pre-wrap;
+    font-weight: 400;
+    margin-top: 0;
+}
+
+
+.HelpTextLine {
+    font-weight: normal !important;
+    margin-bottom: 0;
+    font-size: 14px;
+    margin-top: 17px;
+}

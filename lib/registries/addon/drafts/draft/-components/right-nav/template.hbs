@@ -61,3 +61,14 @@
         @date={{@draftManager.draftRegistration.datetimeUpdated}}
     />
 </span>
+
+<OsfButton
+    data-test-paste-from-clipboard
+    data-analytics-name='Paste from clipboard'
+    @onClick={{action this.pasteFromClipboard}}
+    @type='info'
+    @disabled={{this.disableButtons}}
+    local-class='Label'
+>
+    {{t 'registries.drafts.draft.form.from_clipboard_paste'}}
+</OsfButton>

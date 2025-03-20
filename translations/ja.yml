@@ -1025,6 +1025,15 @@ registries:
                 last_saved: '自動保存済み: '
                 save_failed: '保存に失敗しました。保存できていない変更があります。'
                 failed_auto_save: '下書きの自動保存に失敗しました。'
+                get_retrieval_label: '自動取得'
+                copy_to_clipboard: 'クリップボードにコピー'
+                from_clipboard_paste: 'クリップボードから貼り付け'
+                clipboard_copied: 'クリップボードコピーされました！'
+                warning_noautosave: '自動保存されていません。少し時間をたってから、もう一度お試しください！'
+                clipboard_pasted: 'クリップボード貼り付けされました！'
+                clipboard_fail: 'クリップボードからの保存に失敗しました: '
+                json_invalid: 'クリップボードには有効な JSON が含まれていません: '
+                clipboard_unread: 'クリップボードからの読み取りに失敗しました: '
             review:
                 title: 送信前に登録を確認する
                 page_label: 内容確認

@@ -16,5 +16,14 @@
         @minDate={{@minDate}}
         @maxDate={{@maxDate}}
         @disabled={{@disabled}}
-    />
+        @value={{this.value}}
+    />   
+    {{#if @autoValue}} 
+        <OsfButton
+            @type='success'
+            @onClick={{action this.getDate}}
+        >
+            {{t 'registries.drafts.draft.form.auto_button_label'}}
+        </OsfButton>
+    {{/if}}
 {{/validated-input/x-input-wrapper}}

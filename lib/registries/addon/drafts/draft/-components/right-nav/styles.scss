@@ -1,0 +1,11 @@
+.Label {
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-wrap: break-word;
+
+    &:hover {
+        overflow: visible;
+    }
+}

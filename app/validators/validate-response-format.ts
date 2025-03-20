@@ -45,7 +45,7 @@ export function validateFileList(responseKey: string, node?: NodeModel): Validat
 }
 
 export function validateRequiredIf(
-    requiredIf: string, groups: SchemaBlockGroup[],
+    requiredIf: string, enabledifValue: string, groups: SchemaBlockGroup[],
 ): ValidatorFunction {
     return async (
         key: string,
@@ -63,13 +63,24 @@ export function validateRequiredIf(
         const displayText: string = (otherGroup && otherGroup.labelBlock && otherGroup.labelBlock.displayText) || '';
         const otherValues = { ...content, ...changes } as {[key: string]: string};
         const otherValue = otherValues[otherKey];
-        if (!newValue && !otherValue) {
+        let conditionMet;
+        let messageType;
+        if (enabledifValue === '') {
+            conditionMet = !newValue && !otherValue;
+            messageType = 'invalid_required_if';
+        } else {
+            conditionMet = (!newValue && !otherValue) || (!newValue && otherValue === enabledifValue);
+            messageType = 'invalid_required_if_object';
+        }
+
+        if (conditionMet) {
             return buildMessage(key, {
                 type: 'presence',
                 context: {
-                    type: 'invalid_required_if',
+                    type: messageType,
                     translationArgs: {
                         otherLabel: displayText,
+                        selectedValue: enabledifValue,
                     },
                 },
                 value: {

@@ -1,13 +1,15 @@
-<p
-    data-test-files-instructions
-    local-class='FilesInstructions'
->
-    {{t 'osf-components.registries.schema-block-renderer/editable/files.instructions'
-        projectOrComponent=(if @node.isRoot 'project' 'component')
-        nodeUrl=this.nodeUrl
-        htmlSafe=true
-    }}
-</p>
+{{#if (not @schemaBlock.sentence)}}
+    <p
+        data-test-files-instructions
+        local-class='FilesInstructions'
+    >
+        {{t 'osf-components.registries.schema-block-renderer/editable/files.instructions'
+            projectOrComponent=(if @node.isRoot 'project' 'component')
+            nodeUrl=this.nodeUrl
+            htmlSafe=true
+        }}
+    </p>
+{{/if}}
 <Files::SelectedList
     local-class='SelectedList'
     @selectedFiles={{this.selectedFiles}}

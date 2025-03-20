@@ -9,7 +9,20 @@ import template from './template';
 @layout(template)
 export default class ValidatedDatePicker<M extends DS.Model> extends BaseValidatedComponent<M> {
     @action
-    onChange(newValue: Date[]) {
-        this.set('value', newValue[0]);
+    onChange(newValue: Date) {
+        this.set(
+            'value',
+            `${newValue.getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(new
+            Date().getDate()).padStart(2, '0')}`,
+        );
+    }
+
+    @action
+    getDate() {
+        this.set(
+            'value',
+            `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}-${String(new
+            Date().getDate()).padStart(2, '0')}`,
+        );
     }
 }

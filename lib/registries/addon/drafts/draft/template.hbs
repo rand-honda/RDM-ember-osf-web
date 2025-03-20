@@ -11,14 +11,18 @@
         <OsfLayout @backgroundClass={{local-class 'ContentBackground'}} as |layout|>
             <layout.heading local-class='Heading'>
                 <div local-class='Title'>
-                    <OsfLink
-                        data-analytics-name='Go to project'
-                        local-class='BreadCrumb'
-                        @route='guid-node'
-                        @models={{array draftManager.node.id}}
-                    >
-                        {{draftManager.node.title}} >
-                    </OsfLink>
+                    <div class='BreadCrumb-container'>
+                        <OsfLink
+                            data-analytics-name='Go to project'
+                            local-class='BreadCrumb'
+                            @route='guid-node'
+                            @models={{array draftManager.node.id}}
+                            style='color: white;'
+                        >
+                            {{draftManager.node.title}} >
+                        </OsfLink>
+                        <span local-class='MetadataTitleName'>{{t 'registries.drafts.draft.form.new_registration'}}></span>
+                    </div>
                     <h1>
                         {{t 'registries.drafts.draft.form.new_registration'}}
                     </h1>
@@ -34,15 +38,19 @@
             {{/if}}
             <layout.leftNav as |leftNav|>
                 {{#each draftManager.pageManagers as |pageManager index|}}
-                    <PageLink
-                        @link={{component leftNav.link}}
-                        @draftId={{draftManager.draftId}}
-                        @pageManager={{pageManager}}
-                        @route='registries.drafts.draft.page'
-                        @pageIndex={{index}}
-                        @currentPageIndex={{navManager.currentPage}}
-                        @navMode={{leftNav.leftGutterMode}}
-                    />
+                    {{#let (get pageManager.schemaBlockGroups 0) as |group|}}
+                        {{#unless group.labelBlock.concealmentPageNavigator}}
+                            <PageLink
+                                @link={{component leftNav.link}}
+                                @draftId={{draftManager.draftId}}
+                                @pageManager={{pageManager}}
+                                @route='registries.drafts.draft.page'
+                                @pageIndex={{index}}
+                                @currentPageIndex={{navManager.currentPage}}
+                                @navMode={{leftNav.leftGutterMode}}
+                            />
+                        {{/unless}}
+                    {{/let}}
                 {{/each}}
                 <PageLink
                     @link={{component leftNav.link}}

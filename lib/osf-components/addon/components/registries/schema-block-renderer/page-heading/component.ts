@@ -29,9 +29,23 @@ export default class PageHeading extends Component {
     get localizedHelpText() {
         const text = this.schemaBlock.helpText;
         if (!text) {
-            return text;
+            return [];
         }
-        return this.getLocalizedText(text);
+
+        const localizedText = this.getLocalizedText(text);
+
+        const urlPattern = /(https?:\/\/[^\s]+)/g;
+
+        const lines = localizedText.split('\n').map(line => {
+            const parts = line.split(urlPattern).map(part => (
+                urlPattern.test(part)
+                    ? { type: 'link', content: part.trim() }
+                    : { type: 'text', content: part.trim() }
+            ));
+            return parts;
+        });
+
+        return lines;
     }
 
     getLocalizedText(text: string) {

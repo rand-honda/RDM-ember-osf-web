@@ -1,7 +1,6 @@
 .DisplayText {
     white-space: pre-wrap;
     display: inline-block;
-    margin: 0;
 }
 
 .Required {
@@ -13,8 +12,8 @@
 .HelpText {
     composes: Element from '../../styles';
 
-    white-space: pre-wrap;
     font-weight: 400;
+    margin-top: 0;
 }
 
 .ExampleButton {
@@ -36,4 +35,10 @@
 
     white-space: pre-wrap;
     font-weight: 400;
+}
+
+
+.HelpTextLine {
+    font-weight: normal !important;
+    margin-bottom: 0;
 }

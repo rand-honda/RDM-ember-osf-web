@@ -31,6 +31,7 @@ export interface Page {
     questions: Question[];
     type?: 'object';
     description?: string;
+    clipboardCopyPaste: boolean;
 }
 
 export interface Schema {

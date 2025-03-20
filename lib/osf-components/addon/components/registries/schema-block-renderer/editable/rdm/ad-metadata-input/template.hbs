@@ -1,0 +1,75 @@
+<Registries::SchemaBlockRenderer::Editable::Base @helpText={{this.schemaBlock.helpText}}>
+    {{#if this.fileEntries}}
+        <table class='table table-responsive' local-class='file-metadata-input-files'>
+            <thead>
+                <tr>
+                    <th class='col-md-1'>
+                    </th>
+                    <th class='col-md-3'>
+                        {{t 'metadata.file-metadata-input.columns.path'}}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each this.fileEntries as |fileEntry|}}
+                    {{#if fileEntry.visible}}
+                        <tr>
+                            <td class='col-md-1'>
+                                {{#if fileEntry.added}}
+                                    <button
+                                      data-test-file-metadata-input-upper
+                                      class='btn btn-link'
+                                      local-class='file-metadata-input-edit-button'
+                                        {{action this.removeFileMetadata fileEntry}}
+                                    >
+                                        <i class='fa fa-check-square'></i>
+                                    </button>
+                                {{else if fileEntry.hasProject}}
+                                    <button
+                                      data-test-file-metadata-input-upper
+                                      class='btn btn-link'
+                                      local-class='file-metadata-input-edit-button'
+                                        {{action this.addFileMetadata fileEntry}}
+                                    >
+                                        <i class='fa fa-square'></i>
+                                    </button>
+                                {{/if}}
+                            </td>
+                            <td class='col-md-4'>
+                                <p style={{fileEntry.style}} local-class='file-metadata-path'>
+                                    {{#if fileEntry.folder}}
+                                        {{#if fileEntry.folderExpanded}}
+                                            <button
+                                              data-test-file-metadata-input-expand-minus
+                                              class='btn btn-link'
+                                              local-class='file-metadata-input-edit-button'
+                                                {{action this.expandFolder fileEntry false}}
+                                            >
+                                                <i class='fa fa-minus'></i>
+                                            </button>
+                                        {{else}}
+                                            <button
+                                              data-test-file-metadata-input-expand-plus
+                                              class='btn btn-link'
+                                              local-class='file-metadata-input-edit-button'
+                                                {{action this.expandFolder fileEntry true}}
+                                            >
+                                                <i class='fa fa-plus'></i>
+                                            </button>
+                                        {{/if}}
+                                        <i class='fa fa-folder'></i>
+                                    {{else}}
+                                        <i class='fa fa-file'></i>
+                                    {{/if}}
+                                    {{fileEntry.lastPart}}
+                                </p>
+                            </td>
+                        </tr>
+                    {{/if}}
+                {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+        <LoadingIndicator @dark={{true}} />
+    {{/if}}
+</Registries::SchemaBlockRenderer::Editable::Base>

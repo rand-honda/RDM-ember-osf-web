@@ -23,7 +23,7 @@
             <OsfButton local-class='array-input-remove-button'
               @onClick={{action this.onRemove subChangeset}}
             >
-                {{t 'metadata.array-input.remove-item'}}
+                {{this.schemaBlock.rowAdditionCaption}}{{t 'metadata.array-input.remove-item'}}
             </OsfButton>
         </div>
     {{/each}}
@@ -32,7 +32,7 @@
       @type='primary'
       @onClick={{action this.onAdd}}
     >
-        {{t 'metadata.array-input.add-item'}}
+        {{this.schemaBlock.rowAdditionCaption}}{{t 'metadata.array-input.add-item'}}
     </OsfButton>
 
 </Registries::SchemaBlockRenderer::Editable::Base>

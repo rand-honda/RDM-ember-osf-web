@@ -4,13 +4,17 @@ import Component from '@ember/component';
 import { assert } from '@ember/debug';
 import { action } from '@ember/object';
 import { alias } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
+
 import Changeset from 'ember-changeset';
 import lookupValidator from 'ember-changeset-validations';
 import { ChangesetDef } from 'ember-changeset/types';
+import Intl from 'ember-intl/services/intl';
 import { layout } from 'ember-osf-web/decorators/component';
 import NodeModel from 'ember-osf-web/models/node';
-import { buildValidation, SchemaBlockGroup } from 'ember-osf-web/packages/registration-schema';
+import { buildValidation, SchemaBlock, SchemaBlockGroup } from 'ember-osf-web/packages/registration-schema';
 import DraftRegistrationManager from 'registries/drafts/draft/draft-registration-manager';
+
 import styles from './styles';
 import template from './template';
 
@@ -21,17 +25,23 @@ export default class ArrayInput extends Component {
     changeset!: ChangesetDef;
     metadataChangeset!: ChangesetDef;
     draftManager!: DraftRegistrationManager;
+    @service intl!: Intl;
 
     @alias('schemaBlock.registrationResponseKey')
     valuePath!: string;
     onInput!: () => void;
     onMetadataInput!: () => void;
     schemaBlockGroup!: SchemaBlockGroup;
+    schemaBlock!: SchemaBlock;
     node!: NodeModel;
 
     subChangesets: ChangesetDef[] = [];
 
     didReceiveAttrs() {
+        const rowAdditionCaption = this.schemaBlock.rowAdditionCaption || '';
+
+        this.schemaBlock.rowAdditionCaption = this.getLocalizedText(rowAdditionCaption);
+
         const raw = this.changeset.get(this.valuePath);
         if (raw) {
             const prefix = `${this.valuePath}|`;
@@ -97,5 +107,16 @@ export default class ArrayInput extends Component {
         const newSubChangesets = this.get('subChangesets').filter(c => c !== subChangeset);
         this.set('subChangesets', newSubChangesets);
         this.save(newSubChangesets);
+    }
+
+    getLocalizedText(text: string) {
+        if (!text.includes('|')) {
+            return text;
+        }
+        const texts = text.split('|');
+        if (this.intl.locale.includes('ja')) {
+            return texts[0];
+        }
+        return texts[1];
     }
 }
